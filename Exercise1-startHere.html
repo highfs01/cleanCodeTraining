@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- 
+  Yes, this code is awful, it's meant to be (so you can fix it!)
+   -->
+
+    <!-- 
+    Exercise 1 - naming standards (+ prettify with tabs & indents) 
+    * Rename variables, functions, function parameters and HTML elements as appropriate
+    * Put variables in an appropriate scope
+    * Separate out the CSS (put in appropriately named files/folders)
+    * Consider:
+        Business context (& terminology)
+        Logical & structural use (descriptor and scope)
+        Reusability (does this change the name?)
+    * NOTE: you do not need to fix the logic (yet!)
+    -->
+
+    <title>That interview question sample code - exercise 1</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="Content-Language" content="EN" />
+    <meta
+      name="viewport"
+      content="width=device-width, height=device-height, initial-scale=1.0"
+    />
+    <link rel="stylesheet" href="exercise1.css" />
+    <script>
+      /*
+    Requirements for the terrible code website:
+        - Display a list of plants (NOTE: plants list will change every week)
+        - Allow the user to select up to 4 plants as their 'favourites'
+        - Display an acknowledgment message & echo the selected plants back to the user
+        - (NOTE: selections would be sent to a server at this point - you are not developing the server)
+        - (NOTE: selections would be sent to a server at this point - you are not developing the server)
+
+    */
+
+      function doStuff(e) {
+        const violetAdded = document.getElementById("Violet").checked;
+        const lillyAdded = document.getElementById("Lilly").checked;
+        const snowdropAdded = document.getElementById("Snowdrop").checked;
+        const roseAdded = document.getElementById("Rose").checked;
+        const poppyAdded = document.getElementById("Poppy").checked;
+        const daffodilAdded = document.getElementById("Daffodil").checked;
+        const bluebellAdded = document.getElementById("Bluebell").checked;
+        console.log("Thank you for filling in our poll");
+
+        if (violetAdded) console.log("Violet");
+        if (lillyAdded) console.log("Lilly");
+        if (snowdropAdded) console.log("Snowdrop");
+        if (roseAdded) console.log("Rose");
+        if (poppyAdded) console.log("Poppy");
+        if (daffodilAdded) console.log("Daffodil");
+        if (bluebellAdded) console.log("Bluebell");
+
+        // code to send stuff to server for analysis
+      }
+    </script>
+  </head>
+
+  <body>
+    <h1>Last weeks favourite plant was: Fremontadendron</h1>
+
+    <div id="divvy">
+      <fieldset>
+        <legend>
+          Please select up to 4 favourite <br />plants from this weeks program
+        </legend>
+        <div>
+          <label>
+            <input type="checkbox" id="Violet" name="plant" value="Violet" />
+            Violet
+          </label>
+        </div>
+        <div>
+          <label>
+            <input type="checkbox" id="Lilly" name="plant" value="Lilly" />
+            Lilly
+          </label>
+        </div>
+        <div>
+          <label>
+            <input
+              type="checkbox"
+              id="Snowdrop"
+              name="plant"
+              value="Snowdrop"
+            />
+            Snowdrop
+          </label>
+        </div>
+        <div>
+          <label>
+            <input type="checkbox" id="Rose" name="plant" value="Rose" />
+            Rose
+          </label>
+        </div>
+        <div>
+          <label>
+            <input type="checkbox" id="Poppy" name="plant" value="Poppy" />
+            Poppy
+          </label>
+        </div>
+        <div>
+          <label>
+            <input
+              type="checkbox"
+              id="Daffodil"
+              name="plant"
+              value="Daffodil"
+            />
+            Daffodil
+          </label>
+        </div>
+        <div>
+          <label>
+            <input
+              type="checkbox"
+              id="Bluebell"
+              name="plant"
+              value="Bluebell"
+            />
+            Bluebell
+          </label>
+        </div>
+        <div>
+          <button onclick="doStuff()">Submit</button>
+        </div>
+      </fieldset>
+    </div>
+  </body>
+</html>

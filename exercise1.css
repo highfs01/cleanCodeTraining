@@ -1,0 +1,12 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#divvy {
+  font-family: Arial, Helvetica, sans-serif;
+  float: right;
+  border-style: solid;
+  border-width: 0.2em;
+  border-color: aquamarine;
+  padding: 1em;
+}
