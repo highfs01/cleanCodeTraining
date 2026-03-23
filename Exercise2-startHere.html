@@ -1,20 +1,6 @@
 <!doctype html>
 <html>
   <head>
-    <!-- 
-    Yes, the code is STILL awful, (let's refactor it)
-    -->
-    <!-- 
-    Exercise 2 - structure, style, reusability 
-    * Separate out the data (put in an appropriately named file/folder)
-    * Design and build better functions & application architecture
-    * One of the functions should build the checkboxes using the data
-    * Consider:
-        Each function only has 1 job
-        Good function design (size, focus, parameter passing, readability)
-        Design for reusability (separate files)
-    -->
-
     <title>That interview question sample code - exercise 2</title>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <meta http-equiv="Content-Language" content="EN" />
@@ -33,10 +19,7 @@
     <div id="pollPanel"></div>
 
     <script>
-      /*
-          Just some structural suggestions to start with, feel free to rename & restructure as you see fit - these are very much not the function names I would suggest
-          */
-      let plants = [
+      const plants = [
         "violet",
         "lilly",
         "snowdrop",
@@ -56,7 +39,7 @@
                   </div>`;
           return markup;
         });
-        return checkboxes.join('')
+        return checkboxes.join("");
       }
 
       function renderHtml(html) {
@@ -64,13 +47,13 @@
         pollPanelContainer.innerHTML = html;
       }
 
-      const checkboxesHtml = generateCheckboxesHtml(plants, "plants");
+        const checkboxesHtml = generateCheckboxesHtml(plants, "plants");
 
-      renderHtml(checkboxesHtml);
+        renderHtml(checkboxesHtml);
 
-      function toReadTheFormData() {}
+        function toReadTheFormData() {}
 
-      function toAcknowledgeTheSubmitButtonPress() {}
+        function toAcknowledgeTheSubmitButtonPress() {}
     </script>
   </body>
 </html>
