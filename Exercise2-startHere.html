@@ -34,8 +34,8 @@
 
     <script>
       /*
-        Just some structural suggestions to start with, feel free to rename & restructure as you see fit - these are very much not the function names I would suggest
-        */
+          Just some structural suggestions to start with, feel free to rename & restructure as you see fit - these are very much not the function names I would suggest
+          */
       let plants = [
         "violet",
         "lilly",
@@ -48,21 +48,25 @@
         "olamidaisy",
       ];
 
-      function generateCheckboxes(values, context) {
-        checkboxHtml = values.map((value) => {
+      function generateCheckboxesHtml(values, context) {
+        const checkboxes = values.map((value) => {
           markup = `<div>
-                    <label>
-                    <input type="checkbox" id="${value}" name="${context}" value="${value}" />${value}</label>
-                </div>`;
+                      <label>
+                      <input type="checkbox" id="${value}" name="${context}" value="${value}" />${value}</label>
+                  </div>`;
           return markup;
         });
-        // checkboxHtml is an array - remove the commas to return just the markup
-        return checkboxHtml.join("");
+        return checkboxes.join('')
       }
 
-      createFlowerVotingCheckbox();
+      function renderHtml(html) {
+        let pollPanelContainer = document.getElementById("pollPanel");
+        pollPanelContainer.innerHTML = html;
+      }
 
-      function toBuildThePollPanelContainingTheCheckboxes() {}
+      const checkboxesHtml = generateCheckboxesHtml(plants, "plants");
+
+      renderHtml(checkboxesHtml);
 
       function toReadTheFormData() {}
 
