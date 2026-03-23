@@ -8,47 +8,38 @@
       name="viewport"
       content="width=device-width, height=device-height, initial-scale=1.0"
     />
-
+    <script src="plants.js"></script>
     <!-- <link href="./css/pageReset.css" rel="stylesheet" />
     <link href="./css/pollPanel.css" rel="stylesheet" /> -->
   </head>
 
   <body>
-    <h1>Last weeks favourite plant was: Fremontadendron</h1>
+    <script>
+    const favePlantHeading = `<h1>Last week's favourite plant was: ${favouritePlant}</h1>`
+    document.write(favePlantHeading);
+    </script>
 
     <div id="pollPanel"></div>
 
     <script>
-      const plants = [
-        "violet",
-        "lilly",
-        "snowdrop",
-        "rose",
-        "poppy",
-        "daffodil",
-        "bluebell",
-        "simon flower",
-        "olamidaisy",
-      ];
-
-      function generateCheckboxesHtml(values, context) {
+        function generateCheckboxesHtml(values, context) {
+        // can't get this to work for some reason
+        const voteInstruction = `<p>Please select up to four (4) favourite plants from this week's program</p>`
         const checkboxes = values.map((value) => {
-          markup = `<div>
-                      <label>
-                      <input type="checkbox" id="${value}" name="${context}" value="${value}" />${value}</label>
-                  </div>`;
-          return markup;
+            markup = `<div>
+                        <label>
+                        <input type="checkbox" id="${value}" name="${context}" value="${value}" />${value}</label>
+                    </div>`;
+            return voteInstruction, markup;
         });
-        return checkboxes.join("");
-      }
+        return voteInstruction, checkboxes.join("");
+        }
 
-      function renderHtml(html) {
-        let pollPanelContainer = document.getElementById("pollPanel");
-        pollPanelContainer.innerHTML = html;
-      }
-
-        const checkboxesHtml = generateCheckboxesHtml(plants, "plants");
-
+        function renderHtml(htmlComponent) {
+            let pollPanelContainer = document.getElementById("pollPanel");
+            pollPanelContainer.innerHTML = htmlComponent;
+        }
+        const checkboxesHtml = generateCheckboxesHtml(plants, "plant");
         renderHtml(checkboxesHtml);
 
         function toReadTheFormData() {}
