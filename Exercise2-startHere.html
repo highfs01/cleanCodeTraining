@@ -1,7 +1,6 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-
-<head>
+  <head>
     <!-- 
     Yes, the code is STILL awful, (let's refactor it)
     -->
@@ -17,50 +16,57 @@
     -->
 
     <title>That interview question sample code - exercise 2</title>
-    <meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'>
-    <meta http-equiv='Content-Language' content='EN'>
-    <meta name='viewport' content='width=device-width, height=device-height, initial-scale=1.0' />
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="Content-Language" content="EN" />
+    <meta
+      name="viewport"
+      content="width=device-width, height=device-height, initial-scale=1.0"
+    />
 
     <!-- <link href="./css/pageReset.css" rel="stylesheet" />
     <link href="./css/pollPanel.css" rel="stylesheet" /> -->
+  </head>
 
-</head>
-
-<body>
+  <body>
     <h1>Last weeks favourite plant was: Fremontadendron</h1>
 
     <div id="pollPanel"></div>
 
     <script>
-        /*
+      /*
         Just some structural suggestions to start with, feel free to rename & restructure as you see fit - these are very much not the function names I would suggest
         */
-       let plants = ["violet", "lilly", "snowdrop", "rose", "poppy", "daffodil", "bluebell", "simon flower", "olamidaisy"]
+      let plants = [
+        "violet",
+        "lilly",
+        "snowdrop",
+        "rose",
+        "poppy",
+        "daffodil",
+        "bluebell",
+        "simon flower",
+        "olamidaisy",
+      ];
 
-        function createFlowerVotingCheckbox() {
-            const plantCheckboxes = plants.forEach((plant) => {
-            const plantCheckbox = document.createElement("input");
-            plantCheckbox.innerText = "This is a paragraph";
-            })
-            document.body.appendChild(plantCheckboxes);
-            console.log(plantCheckboxes)
-        }
+      function generateCheckboxes(values, context) {
+        checkboxHtml = values.map((value) => {
+          markup = `<div>
+                    <label>
+                    <input type="checkbox" id="${value}" name="${context}" value="${value}" />${value}</label>
+                </div>`;
+          return markup;
+        });
+        // checkboxHtml is an array - remove the commas to return just the markup
+        return checkboxHtml.join("");
+      }
 
-        createFlowerVotingCheckbox()
+      createFlowerVotingCheckbox();
 
-        function toBuildThePollPanelContainingTheCheckboxes() {
+      function toBuildThePollPanelContainingTheCheckboxes() {}
 
-        }
+      function toReadTheFormData() {}
 
-        function toReadTheFormData() {
-
-        }
-
-        function toAcknowledgeTheSubmitButtonPress() {
-
-        }
-
+      function toAcknowledgeTheSubmitButtonPress() {}
     </script>
-</body>
-
+  </body>
 </html>
