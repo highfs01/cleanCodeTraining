@@ -6,6 +6,8 @@ const plants = [
   "poppy",
   "daffodil",
   "bluebell",
-  "simon flower",
+  "simon-flower",
   "olamidaisy",
 ];
+
+const favouritePlant = "Olamidaisy"
