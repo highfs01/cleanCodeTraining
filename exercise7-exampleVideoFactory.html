@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Factory object</title>
+    <script>
+/*
+When you need to generate different instances of objects depending on the environment we are in
+When you're working with many objects that share the same properties
+When you want to group objects of a similar type together
+When providing frameworks for other people - you can add new types as they occur
+*/
+    </script>
+  </head>
+  <body>
+    <script>
+      // A constructor for defining new ogg videos
+      function Ogg(options) {
+        this.code = options.code || "";
+        this.filename = options.filename || "";
+        this.mimeType = options.mimeType || "";
+      }
+      // A constructor for defining new webm videos
+      function WebM(options) {
+        this.code = options.code || "";
+        this.filename = options.filename || "";
+        this.mimeType = options.mimeType || "";
+      }
+      // A constructor for defining new mp4 videos
+      function Mp4(options) {
+        this.code = options.code || "";
+        this.filename = options.filename || "";
+        this.mimeType = options.mimeType || "";
+      }
+
+      // Define an empty video factory
+      function VideoFactory() {}
+
+      // Define the prototypes and utilities for this factory
+      // Our default videoClass is Ogg
+      VideoFactory.prototype.videoClass = Ogg;
+      // Our Factory method for creating new Video instances
+      VideoFactory.prototype.createVideo = function (options) {
+        switch (options.videoType) {
+          case "ogg":
+            this.videoClass = Ogg;
+            break;
+          case "webm":
+            this.videoClass = WebM;
+            break;
+          case "mp4":
+            this.videoClass = Mp4;
+            break;
+        }
+        return new this.videoClass(options);
+      };
+
+      // Create an instance of our factory that makes videos
+      var filmFactory = new VideoFactory();
+      var ogg = filmFactory.createVideo({
+        videoType: "ogg",
+        filename: "thisvideo.ogg",
+      });
+
+      // Tests to confirm creation of object
+      console.log(ogg instanceof Ogg);
+      console.log(ogg);
+    </script>
+  </body>
+</html>

@@ -37,8 +37,11 @@
     <script>
       class Plant {
         constructor({ pic, label, link }) {
-          ((this.pic = pic), (this.label = label), (this.link = link));
+          ((this.pic = pic), (this.label = label), (this.link = link)) 
         }
+        getHtml() {
+        }
+        // add method to get HTML and render
       }
 
       const plantsFormatted = tileContents.map((plant) => new Plant(plant));

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Patterns - exercise 7 sample answer (factory pattern)</title>
+
+    <meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'>
+    <meta http-equiv='Content-Language' content='EN'>
+    <meta name='viewport' content='width=device-width, height=device-height, initial-scale=1.0' />
+
+    <link href="./css/pageReset.css" rel="stylesheet" />
+    <link href="./css/pictureTile.css" rel="stylesheet" />
+
+    <script src="./data/mixedPlantData.js"></script>
+    <script src="./classes/ex7Plant.js"></script>
+    <script src="./classes/ex7EdiblePlant.js"></script>
+    <script src="./classes/ex7MedicinalPlant.js"></script>
+
+    <!-- 
+    The plant applications we have worked with so far have been specific to a type of plant only, e.g. all edible plants or all 'ordinary garden' plants.  This new application needs to deal with a 'real garden' which contains a mixture of all types of plants.
+
+    We can use a factory pattern to build the data objects.
+
+    In order to best represent this new scenario we will need to refactor the classes to output the relevant html string for the plant type.  To make it easy to distinguish between the original plant classes (used in exercise 6) i have prefixed the new classes with 'ex7' - i am NOT suggesting this would be the best way to name them in production.
+
+    I have left the factory code in script tags below for convenience - obviously in production you would put it in a separate file
+     -->
+
+</head>
+
+<body>
+    <script>
+        // Define an empty factory
+        function Garden() { }
+        Garden.prototype.plantClass = Plant;
+        // Our Factory method for creating new instances
+        Garden.prototype.createGarden = function (props) {
+            switch (props.type) {
+                case "Edible":
+                    this.plantClass = EdiblePlant;
+                    break;
+                case "Medicinal":
+                    this.plantClass = MedicinalPlant;
+                    break;
+                default:
+                    this.plantClass = Plant;
+                    break;
+            }
+            return new this.plantClass(props);
+        };
+
+        // Create an instance of our factory
+        var plantFactory = new Garden();
+    </script>
+
+    <h1>Plant images and information</h1>
+    <div id='webpageContent'></div>
+
+    <script>
+        (function buildTiles(mixedPlants) {
+            tileContent = getPlants(mixedPlants);
+
+            document.getElementById('webpageContent').innerHTML = buildPlantHtml(tileContent);
+        }(mixedPlants));
+
+        function getPlants(rawPlantData) {
+            let plantObjects = [];
+
+            plantObjects = rawPlantData.map((plant) => {
+                let newPlant = plantFactory.createGarden(plant);
+                return newPlant;
+            });
+
+            return plantObjects;
+        }
+
+        function buildPlantHtml(Plants) {
+            let markup = '';
+
+            Plants.forEach(plant => {
+                markup += plant.buildPlantHtml();
+            });
+
+            return markup;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Patterns - exercise 7 starter (factory pattern)</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="Content-Language" content="EN" />
+    <meta
+      name="viewport"
+      content="width=device-width, height=device-height, initial-scale=1.0"
+    />
+
+    <link href="./css/pageReset.css" rel="stylesheet" />
+    <link href="./css/pictureTile.css" rel="stylesheet" />
+
+    <!-- <script src="./data/ex7mixedPlantData.js"></script> -->
+    <script src="./classes/ex7Plant.js"></script>
+    <script src="./classes/ex7EdiblePlant.js"></script>
+    <script src="./classes/ex7MedicinalPlant.js"></script>
+
+    <!-- 
+    The plant applications we have worked with so far have been specific to a type of plant only, e.g. all edible plants or all 'ordinary garden' plants.  
+    This new application needs to deal with a 'real garden' which contains a mixture of all types of plants.
+
+    We can use a factory pattern to build the data objects.
+
+    In order to best represent this new scenario we will need to refactor the classes to output the relevant html string for the plant type.  
+    To make it easy to distinguish between the original plant classes (used in exercise 6) i suggest you  prefix the new classes with 'ex7' 
+    - i am NOT suggesting this would be the best way to name them in production.
+
+    There is a video factory example in the electronic handouts, use that as a basis for your new code.
+     -->
+  </head>
+
+  <body>
+    <script>
+      // Constructors for new plants
+      function Climber(options) {
+        this.type = options.type || "";
+        this.latinName = options.latinName || "";
+        this.commonName = options.commonName || "";
+        this.image = options.image || "";
+      }
+      function Edible(options) {
+        this.type = options.type || "";
+        this.latinName = options.latinName || "";
+        this.commonName = options.commonName || "";
+        this.image = options.image || "";
+      }
+      function Medicinal(options) {
+        this.type = options.type || "";
+        this.latinName = options.latinName || "";
+        this.commonName = options.commonName || "";
+        this.image = options.image || "";
+      }
+
+      // Define an empty factory
+      function PlantFactory() {}
+        // in JS most things are classes, including classes
+
+      // Create a Factory method for creating new instances
+      PlantFactory.prototype.plantClass = Climber; // it could be nothing, but better to return a default so people know its not faulty
+        // prototype is adding something to it
+
+        // under the bonnet
+        // base object in JS is the Object object with properties and methods
+        // everything is based on that: arrays, functions etc
+        // objects inherit from others: protypal objects
+
+      PlantFactory.prototype.createPlant = function (options) {
+        switch (options.plantType) {
+          case "Climber":
+            this.plantClass = Climber;
+            break;
+          case "Edible":
+            this.plantClass = Edible;
+            break;
+          case "Medicinal":
+            this.plantClass = Medicinal;
+            break;
+        }
+        return new this.plantClass(options);
+      };
+      // Create an instance of the factory
+      let myPlantFactory = new PlantFactory();
+      let myIvy = myPlantFactory.createPlant({
+        latinName: "Hedera hibernica",
+        commonName: "Ivy",
+        type: "Climber",
+        image: "./images/ivy.jpg",
+      });
+      console.log(myPlantFactory, myIvy);
+      
+    </script>
+
+    <h1>Plant images and information</h1>
+    <div id="webpageContent"></div>
+
+    <script>
+      // Use your code
+      // Use the factory to create objects of the correct type based on the data
+      // Generate and display the HTML for the plant tiles
+    </script>
+  </body>
+</html>
