@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Classes - exercise 6 style 1 for discussion</title>
+
+    <meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'>
+    <meta http-equiv='Content-Language' content='EN'>
+    <meta name='viewport' content='width=device-width, height=device-height, initial-scale=1.0' />
+
+</head>
+
+<body>
+    <h1>Plant images and information</h1>
+    <script>
+        class Plant {
+            constructor(props) {
+                const { latinName, commonName, image, height, spread, ph, moisture, colour, scent, cultivation, propagation } = props;
+
+                this.latinName = latinName;
+                this.commonName = commonName;
+                this.image = image;
+                this.height = height;
+                this.spread = spread;
+                this.ph = ph;
+                this.moisture = moisture;
+                this.colour = colour;
+                this.scent = scent;
+                this.cultivation = cultivation;
+                this.propagation = propagation;
+            }
+
+            information() {
+                return `${this.commonName} can grow to ${this.height} high and spread to ${this.spread}`;
+            }
+        }
+
+        const plantData = {
+            latinName: "Papaver",
+            commonName: "Poppy",
+            image: "./images/poppy.jpg",
+            height: "65cm",
+            spread: "3cm",
+            ph: 7,
+            moisture: 4,
+            colour: "Red",
+            scent: "No",
+            cultivation: "Seed",
+            propagation: "Seed"
+        }
+
+        const examplePlant = new Plant(plantData);
+
+        alert(examplePlant.information());
+    </script>
+</body>
+
+</html>

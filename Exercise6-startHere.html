@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- 
+    * We created a basic component in the previous exercises
+    * The simple component we have worked with so far would not warrant classes
+    * This time we are working with Classes and a new component
+    * The new component will provide additional information about plants
+    * The css design has been provided, you need to manage the data and its display inside the design
+    -->
+    <!-- 
+    Exercise 6 - Design and build suitable classes - 
+    * Minimum requirement - a Plant class
+    * Intermediate requirement - Plant class and at least one appropriate subclass
+    * Advanced requirement - Check your classes against SOLID design principles
+    * Things to consider  ...
+        - High cohesion (only one job)
+        - Low coupling (dependencies)
+        - The classes you are designing now would be for the sort of app that might be used in gardening for either plant identification or growing information & instructions.  It may provide images, downloadable documents, scientific and/or simple information.
+    -->
+    <title>Classes - exercise 6</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="Content-Language" content="EN" />
+    <meta
+      name="viewport"
+      content="width=device-width, height=device-height, initial-scale=1.0"
+    />
+
+    <!-- <link href="./css/pageReset.css" rel="stylesheet" /> -->
+    <!-- <link href="./css/pictureTile.css" rel="stylesheet" /> -->
+
+    <!-- 
+    Add in scripts for your Plant class (and subclasses if appropriate), consider how you would load data into your Plant objects (when you instantiate them) and replace this ("plantsData.js") with your data container
+    -->
+    <script src="plantsData.js"></script>
+    <script>
+      class Plant {
+        constructor({ pic, label, link }) {
+          ((this.pic = pic), (this.label = label), (this.link = link));
+        }
+      }
+
+      const plantsFormatted = tileContents.map((plant) => new Plant(plant));
+    </script>
+  </head>
+
+  <body>
+    <h1>Plant images and information</h1>
+    <div id="webpageContentWrapper"></div>
+
+    <script>
+      /* 
+        Refactor this code - areas to work on include -
+        - appropriate naming standards for your business context & previous standards
+        - separate into relevant functions
+        - instantiate objects based on data
+        - use methods to display data & provide other functionality
+        - always bear in mind reusability
+        */
+      const plantHtml = (function prepareHtml() {
+        let markup = "";
+
+        const numberOfTiles = plantsFormatted.length;
+        for (let counter = 0; counter < numberOfTiles; counter++) {
+          markup += `<div class='tile'><div class='swap'>
+            <img src='${plantsFormatted[counter].pic}'  width='260' height='200' />
+            <span class='hover-content'>PUT INFORMATION HERE</span><br/></div>
+            <span class='link'><a href='${plantsFormatted[counter].link}' target='_blank'>More information on ${plantsFormatted[counter].label}</a></span></div>`;
+        }
+        return markup;
+      })();
+
+      (function renderHtml(plantHtml) {
+        document.getElementById("webpageContentWrapper").innerHTML = plantHtml;
+      })(plantHtml);
+    </script>
+  </body>
+</html>
