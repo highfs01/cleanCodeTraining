@@ -17,20 +17,9 @@
     <h1>Last weeks favourite plant was: Fremontadendron</h1>
 
     <div id="pollPanel"></div>
+    <script src="plants.js"></script>
 
-    <script>
-      const plants = [
-        "violet",
-        "lilly",
-        "snowdrop",
-        "rose",
-        "poppy",
-        "daffodil",
-        "bluebell",
-        "simon flower",
-        "olamidaisy",
-      ];
-
+    <script>    
       function generateCheckboxesHtml(values, context) {
         const checkboxes = values.map((value) => {
           markup = `<div>
@@ -47,13 +36,13 @@
         pollPanelContainer.innerHTML = html;
       }
 
-        const checkboxesHtml = generateCheckboxesHtml(plants, "plants");
+      const checkboxesHtml = generateCheckboxesHtml(plants, "plants");
 
-        renderHtml(checkboxesHtml);
+      renderHtml(checkboxesHtml);
 
-        function toReadTheFormData() {}
+      function toReadTheFormData() {}
 
-        function toAcknowledgeTheSubmitButtonPress() {}
+      function toAcknowledgeTheSubmitButtonPress() {}
     </script>
   </body>
 </html>
