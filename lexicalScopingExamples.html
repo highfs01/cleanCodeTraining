@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Hoisting</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="Content-Language" content="EN" />
+    <meta
+      name="viewport"
+      content="width=device-width, height=device-height, initial-scale=1.0"
+    />
+    <link rel="stylesheet" href="exercise1.css" />
+    <script>
+      (function noHoistingDemonstration() {
+        let x = 1;
+        function innerFunction() {
+          console.log("demo without hoisting");
+          console.log("x = ", x);
+          x = 2;
+          console.log("x = ", x);
+        }
+        innerFunction();
+      })();
+
+      (function hoistingDemonstration() {
+        let x = 1;
+        function innerFunction() {
+          console.log("\ndemo of hoisting");
+          try {
+            console.log("x = ", x); // this causes an error so moves to catch ...
+            let x = 2; // ... cos this hoisted to the top, so known in local scope but not initialised yet
+            console.log("x = ", x);
+          } catch {
+            console.log(
+              "error caught, as x declaration was hoisted but not initialised",
+            );
+            // this is the code that executes in practise
+            // let x;
+            // console.log(x);
+            // x = 2;
+            // console.log(x);
+          }
+        }
+        innerFunction();
+      })();
+
+      (function implicitGlobalVariableDemo() {
+        (function innerFunction() {
+          y =
+            "y was created without let / const, so is an implicit global variable";
+        })();
+        console.log(y); // logs y, even though y was only in the scope of the inner function
+      })();
+
+      const closureDemo = function outerFunction() {
+        let z = "this string z can be printed outside of the outer function...";
+        return function innerFunction() {
+          console.log(z); // ... as referencing in innerFunction puts it in the cove
+        };
+      };
+
+      closureDemo()();
+      // IIFE‑style double invocation to run the returned function
+      //   equivalent to inner = returnedFunction(), then inner()
+    </script>
+  </head>
+
+  <body>
+    <h1>Possible bugs from scoping JS</h1>
+    <div>check console logs</div>
+  </body>
+</html>
